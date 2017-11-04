@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage ('Build') {
+        stage ('Build Application') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
@@ -26,13 +26,13 @@ pipeline {
 		
 		stage ('Build Docker Image') {
             steps {
-                sh 'mvn -Dfabric8.mode=openshift fabric8:build' 
+                sh 'mvn -Dfabric8.mode=openshift fabric8:resource fabric8:build' 
             }
         }
 		
-		stage ('Deploy') {
+		stage ('Openshift Deploy') {
             steps {
-                sh 'mvn -Dfabric8.mode=openshift fabric8:resource fabric8:deploy' 
+                sh 'mvn fabric8:deploy'
             }
         }
     }
