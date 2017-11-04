@@ -32,7 +32,7 @@ pipeline {
 		
 		stage ('Openshift Deploy') {
             steps {
-                sh 'mvn fabric8:deploy'
+                sh 'mvn -DskipTests fabric8:deploy'
             }
         }
     }
