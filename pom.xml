@@ -51,4 +51,8 @@
 	</build>
 
 
+	<scm>
+		<url>https://github.com/1ashutoshsahoo/SpringBootKubernetes</url>
+		<developerConnection>Ashutosh Sahoo</developerConnection>
+	</scm>
 </project>
