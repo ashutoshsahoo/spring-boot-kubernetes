@@ -5,7 +5,7 @@
 
 	<groupId>com.ashu</groupId>
 	<artifactId>SpringBootKubernetes</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>SpringBootKubernetes</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.8.RELEASE</version>
+		<version>2.0.3.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -45,7 +45,7 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>fabric8-maven-plugin</artifactId>
-				<version>3.5.31</version>
+				<version>3.5.40</version>
 			</plugin>
 		</plugins>
 	</build>
