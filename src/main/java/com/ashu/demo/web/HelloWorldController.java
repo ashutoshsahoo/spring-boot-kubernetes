@@ -6,7 +6,10 @@ import java.net.UnknownHostException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class HelloWorldController {
 
 	@GetMapping
@@ -18,13 +21,11 @@ public class HelloWorldController {
 		String ipAddress = "Not found";
 		InetAddress ip;
 		try {
-
 			ip = InetAddress.getLocalHost();
 			ipAddress = ip.getHostAddress();
-			System.out.println("Current IP address : " + ipAddress);
-			
+			log.info("Current IP address : " + ipAddress);
 		} catch (UnknownHostException e) {
-			System.err.println(e.getMessage());
+			log.error(e.getMessage());
 		}
 		return ipAddress;
 	}
