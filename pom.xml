@@ -6,7 +6,7 @@
 
 	<groupId>com.ashu</groupId>
 	<artifactId>SpringBootKubernetes</artifactId>
-	<version>2.0.0</version>
+	<version>3.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>SpringBootKubernetes</name>
@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.2</version><!--$NO-MVN-MAN-VER$-->
+			<version>1.18.2</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>provided</scope>
 		</dependency>
 

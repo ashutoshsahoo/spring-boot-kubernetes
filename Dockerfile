@@ -1,5 +1,24 @@
-FROM openjdk:8-jdk-alpine
+# set the base image
+FROM openjdk:10-jre-slim
+
+# author
+MAINTAINER Ashutosh Sahoo
+
+# extra metadata
+LABEL version="3.0.0"
+LABEL description="Spring boot application with Dockerfile."
+
+#The application's jar file
+ENV JAR_NAME SpringBootKubernetes-3.0.0.jar
+
+# Add a volume pointing to /tmp
 VOLUME /tmp
-ADD target/SpringBootKubernetes-2.0.0.jar app.jar
+
+# add the application to the container
+ADD target/$JAR_NAME app.jar
+
+# expose port
 EXPOSE 8080
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Duser.timezone=GMT","-jar","/app.jar"]
+
+# Run the jar file 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Duser.timezone=UTC","-jar","/app.jar"]
