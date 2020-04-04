@@ -5,24 +5,22 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ashu</groupId>
-	<artifactId>SpringBootKubernetes</artifactId>
-	<version>3.0.0</version>
+	<artifactId>spring-boot-kubernetes</artifactId>
+	<version>4.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>SpringBootKubernetes</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-boot-kubernetes</name>
+	<description>Demo project for Spring Boot with fabric8 maven plugin</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.4.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.2.5.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -33,14 +31,19 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.2</version><!--$NO-MVN-MAN-VER$ -->
-			<scope>provided</scope>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -53,14 +56,14 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>fabric8-maven-plugin</artifactId>
-				<version>3.5.41</version>
+				<version>4.4.1</version>
 			</plugin>
 		</plugins>
 	</build>
 
 
 	<scm>
-		<url>https://github.com/ashutoshsahoo/SpringBootKubernetes</url>
+		<url>https://github.com/ashutoshsahoo/spring-boot-kubernetes</url>
 		<developerConnection>Ashutosh Sahoo</developerConnection>
 	</scm>
 </project>
