@@ -26,7 +26,7 @@ pipeline {
 		
 		stage ('Build Docker Image') {
             steps {
-                sh 'mvn -Dfabric8.mode=openshift fabric8:resource fabric8:build' 
+                sh 'mvn fabric8:resource fabric8:build' 
             }
         }
 		
