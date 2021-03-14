@@ -1,8 +1,5 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven 3.5.4'
-    }
+    agent { docker {label 'docker-slave-demo' }}
     stages {
         stage ('Initialize') {
             steps {
@@ -24,16 +21,16 @@ pipeline {
             }
         }
 		
-		stage ('Build Docker Image') {
-            steps {
-                sh 'mvn fabric8:resource fabric8:build' 
-            }
-        }
-		
-		stage ('Openshift Deploy') {
-            steps {
-                sh 'mvn -DskipTests fabric8:deploy'
-            }
-        }
+// 		stage ('Build Docker Image') {
+//             steps {
+//                 sh 'mvn fabric8:resource fabric8:build'
+//             }
+//         }
+//
+// 		stage ('Openshift Deploy') {
+//             steps {
+//                 sh 'mvn -DskipTests fabric8:deploy'
+//             }
+//         }
     }
 }

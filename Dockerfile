@@ -9,13 +9,13 @@ LABEL version="4.0.0"
 LABEL description="Spring boot application with Dockerfile."
 
 #The application's jar file
-ENV JAR_NAME spring-boot-kubernetes-4.0.0.jar
+#ENV JAR_NAME spring-boot-kubernetes-4.0.0.jar
 
 # Add a volume pointing to /tmp
 VOLUME /tmp
 
 # add the application to the container
-ADD target/$JAR_NAME app.jar
+ADD target/*.jar app.jar
 
 # expose port
 EXPOSE 8080
