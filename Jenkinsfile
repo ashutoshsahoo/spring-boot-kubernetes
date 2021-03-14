@@ -4,8 +4,14 @@ pipeline {
             label 'docker-slave'
         }
     }
-    stages {
 
+    environment {
+        //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
+        ARTIFACT_ID = readMavenPom().artifactId
+        ARTIFACT_VERSION = readMavenPom().version
+    }
+
+    stages {
         stage ('Build Application') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install'
@@ -17,21 +23,20 @@ pipeline {
             }
         }
 
-		stage ('Build Docker Image') {
+        stage ('Build Docker Image') {
             steps {
-                sh 'docker image build -t spring-boot-kubernetes .'
-            }
-        }
-
-		stage ('Build with fabric8 plugin') {
-            steps {
-               sh 'mvn fabric8:resource fabric8:build'
+                sh '''
+                echo "IMAGE: ${ARTIFACT_ID}"
+                echo "VERSION: ${ARTIFACT_VERSION}"
+                mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+                docker image build --build-arg IMAGE_VERSION=${ARTIFACT_VERSION} -t ${ARTIFACT_ID}:${ARTIFACT_VERSION} .
+                '''
             }
         }
 
         stage ('Kubernetes Deploy') {
             steps {
-                sh 'mvn -DskipTests fabric8:deploy'
+                sh 'kubectl apply -f kubernetes.yml'
             }
         }
     }

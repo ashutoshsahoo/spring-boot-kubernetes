@@ -1,24 +1,27 @@
 # set the base image
 FROM adoptopenjdk/openjdk11:alpine-jre
 
-# author
-MAINTAINER Ashutosh Sahoo
+
+# arguments
+
+ARG IMAGE_VERSION
 
 # extra metadata
-LABEL version="4.0.0"
-LABEL description="Spring boot application with Dockerfile."
+LABEL author="Ashutosh Sahoo"
+LABEL version=${IMAGE_VERSION}
+LABEL description="Spring boot application."
 
-#The application's jar file
-#ENV JAR_NAME spring-boot-kubernetes-4.0.0.jar
+# expose port
+EXPOSE 8080
 
 # Add a volume pointing to /tmp
 VOLUME /tmp
 
 # add the application to the container
-ADD target/*.jar app.jar
-
-# expose port
-EXPOSE 8080
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
 
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Duser.timezone=UTC","-jar","/app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Duser.timezone=UTC","-cp","app:app/lib/*","com.ashu.demo.SpringBootKubernetesApplication"]
