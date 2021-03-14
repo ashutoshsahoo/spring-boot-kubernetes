@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label 'docker-slave-demo' }
+            label 'docker-slave' }
         }
     stages {
         stage ('Initialize') {
