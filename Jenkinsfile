@@ -36,7 +36,7 @@ pipeline {
 
         stage ('Kubernetes Deploy') {
             steps {
-                sh 'kubectl apply -f kubernetes.yml'
+                sh 'kubectl --kubeconfig=/etc/mk8s/kube.config  apply -f kubernetes.yml'
             }
         }
     }
