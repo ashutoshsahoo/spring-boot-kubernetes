@@ -24,12 +24,12 @@ pipeline {
             }
         }
 
-// 		stage ('Build Docker Image') {
-//             steps {
-//                 sh 'mvn fabric8:resource fabric8:build'
-//             }
-//         }
-//
+		stage ('Build Docker Image') {
+            steps {
+                sh 'docker image build -t ashutoshsahoo/spring-boot-kubernetes .'
+            }
+        }
+
 // 		stage ('Openshift Deploy') {
 //             steps {
 //                 sh 'mvn -DskipTests fabric8:deploy'
