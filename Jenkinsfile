@@ -25,12 +25,12 @@ pipeline {
 
         stage ('Build Docker Image') {
             steps {
-                sh '''
-                echo "IMAGE: ${ARTIFACT_ID}"
-                echo "VERSION: ${ARTIFACT_VERSION}"
+                sh """
+                echo IMAGE: ${ARTIFACT_ID}
+                echo VERSION: ${ARTIFACT_VERSION}
                 mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
                 docker image build --build-arg IMAGE_VERSION=${ARTIFACT_VERSION} -t ${ARTIFACT_ID}:${ARTIFACT_VERSION} .
-                '''
+                """
             }
         }
 
