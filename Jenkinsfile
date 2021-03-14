@@ -7,8 +7,8 @@ pipeline {
 
     environment {
         //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
-        ARTIFACT_ID = readMavenPom().artifactId
-        ARTIFACT_VERSION = readMavenPom().version
+        ARTIFACT_ID = readMavenPom().getArtifactId()
+        ARTIFACT_VERSION = readMavenPom().getVersion()
     }
 
     stages {
