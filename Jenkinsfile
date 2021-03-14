@@ -1,36 +1,19 @@
 pipeline {
-    agent { docker {label 'docker-slave-demo' }}
+    agent none
     stages {
-        stage ('Initialize') {
+        stage('Example Build') {
+            agent { docker 'maven:3-alpine' }
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                echo 'Hello, Maven'
+                sh 'mvn --version'
             }
         }
-
-        stage ('Build Application') {
+        stage('Example Test') {
+            agent { docker 'openjdk:8-jre' }
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
+                echo 'Hello, JDK'
+                sh 'java -version'
             }
         }
-		
-// 		stage ('Build Docker Image') {
-//             steps {
-//                 sh 'mvn fabric8:resource fabric8:build'
-//             }
-//         }
-//
-// 		stage ('Openshift Deploy') {
-//             steps {
-//                 sh 'mvn -DskipTests fabric8:deploy'
-//             }
-//         }
     }
 }
