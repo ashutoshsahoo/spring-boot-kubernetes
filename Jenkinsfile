@@ -30,10 +30,10 @@ pipeline {
             }
         }
 
-// 		stage ('Openshift Deploy') {
-//             steps {
-//                 sh 'mvn -DskipTests fabric8:deploy'
-//             }
-//         }
+		stage ('K8s Deploy') {
+            steps {
+                sh 'mvn k8s:build k8s:resource k8s:apply'
+            }
+        }
     }
 }
