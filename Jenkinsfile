@@ -1,8 +1,8 @@
 pipeline {
-    agent {
-        node {
-            label 'docker-slave'
-        }
+    agent { node { label 'docker-slave' } }
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     parameters {
         // booleanParam, choice, file, text, password, run, or string
