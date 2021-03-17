@@ -36,4 +36,4 @@ mvn -Pk8s k8s:undeploy
 
 ## Docker image with layered architecture
 
-For docker image with layered architecture, refer [deploy](./deploy) directory.
+For docker image with layered architecture, refer [Jenkinsfile](./Jenkinsfile) and [Dockerfile](./deploy/Dockerfile) directory.
