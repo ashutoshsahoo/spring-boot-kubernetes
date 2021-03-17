@@ -10,6 +10,7 @@ pipeline {
         //string(defaultValue: "TEST", description: 'What environment?', name: 'stringExample')
         //text(defaultValue: "This is a multiline\n text", description: "Multiline Text", name: "textExample")
         //choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'choiceExample')
+        //choice(choices: ['greeting' , 'silence'],description: '', name: 'REQUESTED_ACTION')
         //password(defaultValue: "Password", description: "Password Parameter", name: "passwordExample")
     }
 
@@ -50,7 +51,7 @@ pipeline {
         }
 
         stage ('Kubernetes Deploy') {
-        when { env.DEPLOYMENT.toBoolean() }
+        when { expression { env.DEPLOYMENT.toBoolean() } }
             steps {
                 sh 'kubectl --kubeconfig=/etc/mk8s/kube.config  apply -f deploy/kubernetes.yml'
             }
