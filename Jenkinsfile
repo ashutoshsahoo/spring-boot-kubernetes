@@ -50,7 +50,7 @@ pipeline {
         }
 
         stage ('Kubernetes Deploy') {
-        when { DEPLOYMENT}
+        when { env.DEPLOYMENT }
             steps {
                 sh 'kubectl --kubeconfig=/etc/mk8s/kube.config  apply -f deploy/kubernetes.yml'
             }
