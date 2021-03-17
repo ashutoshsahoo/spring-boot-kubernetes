@@ -33,3 +33,7 @@ curl --location --request GET 'http://localhost:31000'
 mvn -Pk8s k8s:undeploy
 
 ```
+
+## Docker image with layered architecture
+
+For docker image with layered architecture, refer [deploy](./deploy) directory.
