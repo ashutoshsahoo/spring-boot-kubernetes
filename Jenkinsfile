@@ -51,7 +51,7 @@ pipeline {
         }
 
         stage ('Kubernetes Deploy') {
-        when { expression { env.DEPLOYMENT.toBoolean() } }
+        when { expression { DEPLOYMENT } }
             steps {
                 sh 'kubectl --kubeconfig=/etc/mk8s/kube.config  apply -f deploy/kubernetes.yml'
             }
