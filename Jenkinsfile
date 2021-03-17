@@ -17,7 +17,7 @@ pipeline {
         //Use Pipeline Utility Steps plugin to read information from pom.xml into environment variables
         ARTIFACT_ID = readMavenPom().getArtifactId()
         ARTIFACT_VERSION = readMavenPom().getVersion()
-        DEPLOYMENT= ${params.deployment}
+        DEPLOYMENT= "${params.deployment}"
     }
 
     stages {
@@ -50,7 +50,7 @@ pipeline {
         }
 
         stage ('Kubernetes Deploy') {
-        when { env.DEPLOYMENT}
+        when { DEPLOYMENT}
             steps {
                 sh 'kubectl --kubeconfig=/etc/mk8s/kube.config  apply -f deploy/kubernetes.yml'
             }
