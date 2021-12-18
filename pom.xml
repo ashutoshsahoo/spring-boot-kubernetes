@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>spring-boot-kubernetes</name>
-    <description>Demo project for Spring Boot with fabric8 maven plugin</description>
+    <description>Demo project for Spring Boot with jkube maven plugin</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
