@@ -1,0 +1,58 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: spring-boot-kubernetes
+spec:
+  host: spring-boot-kubernetes
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+  subsets:
+    - name: v5
+      labels:
+        version: 5.0.0
+    - name: v6
+      labels:
+        version: 6.0.0
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: spring-boot-kubernetes-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: spring-boot-kubernetes
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - spring-boot-kubernetes-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /api/v5
+      route:
+        - destination:
+            host: spring-boot-kubernetes
+            subset: v5
+    - match:
+        - uri:
+            prefix: /api/v6
+      route:
+        - destination:
+            host: spring-boot-kubernetes
+            subset: v6
+---
+

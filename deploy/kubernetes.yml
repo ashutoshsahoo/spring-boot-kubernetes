@@ -7,7 +7,7 @@ items:
     metadata:
       labels:
         app: spring-boot-kubernetes
-        version: 5.0.0
+        version: 6.1.0
       name: spring-boot-kubernetes
     spec:
       ports:
@@ -24,7 +24,7 @@ items:
     metadata:
       labels:
         app: spring-boot-kubernetes
-        version: 5.0.0
+        version: 6.1.0
       name: spring-boot-kubernetes
     spec:
       replicas: 1
@@ -36,11 +36,11 @@ items:
         metadata:
           labels:
             app: spring-boot-kubernetes
-            version: 5.0.0
+            version: 6.1.0
         spec:
           containers:
             - name: spring-boot-kubernetes
-              image: spring-boot-kubernetes:5.0.0
+              image: ashutoshsahoo/spring-boot-kubernetes:6.1.0
               imagePullPolicy: IfNotPresent
               resources:
                 limits:
