@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: spring-boot-kubernetes
+  main:
+    banner-mode: off

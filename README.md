@@ -16,7 +16,7 @@ directory.
 * Open shell in project directory and run following command to build docker image.
 
 ```shell
-docker build -f deploy/Dockerfile --build-arg VERSION=6.1.0 -t ashutoshsahoo/spring-boot-kubernetes:6.1.0 .
+docker build -f deploy/Dockerfile --build-arg VERSION=6.2.0 -t ashutoshsahoo/spring-boot-kubernetes:6.2.0 .
 ```
 
 ## Kubernetes deployment
