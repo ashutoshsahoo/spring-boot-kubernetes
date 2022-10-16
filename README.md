@@ -36,7 +36,7 @@ kubelet get po,svc
 * Verify application status
 
 ```sh
-curl --location --request GET 'http://localhost:31000'
+curl --location --request GET 'http://localhost:31000/api/v5/hello'
 ```
 
 * Delete Kubernetes deployment
@@ -90,7 +90,7 @@ kubectl delete -f deploy/istio
 
 Refer the documentation [here](https://istio.io/latest/docs/setup/getting-started/#uninstall) to clean up.
 
-## Deploy application using jkube maven plugin (_Not working with java 17_)
+## Deploy application using jkube maven plugin
 
 * Application deployment
 
@@ -101,7 +101,8 @@ mvn -Pk8s k8s:build k8s:resource k8s:deploy
 * Verify application
 
 ```sh
-curl --location --request GET 'http://localhost:31000'
+kubectl exec -it deployments.apps/spring-boot-kubernetes -- bash
+curl --location --request GET 'http://localhost:8080/api/v5/hello'
 ```
 
 * UnDeploy application
