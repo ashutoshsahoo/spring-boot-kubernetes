@@ -25,13 +25,10 @@ public class ELKController {
 
     @GetMapping(value = "/exception")
     public void exception() {
-
         try {
-            throw new Exception("Exception has occurred....");
-        } catch (Exception e) {
+            throw new RuntimeException("Exception has occurred....");
+        } catch (RuntimeException e) {
             log.error(e.getMessage(), e);
         }
-
-
     }
 }
