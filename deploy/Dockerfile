@@ -1,11 +1,11 @@
-FROM openjdk:17-slim as builder
+FROM openjdk:17-slim AS builder
 WORKDIR /usr/local/temp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 FROM openjdk:17-slim
-ARG VERSION=1.0.0
+ARG VERSION=7.2.0
 LABEL version=${VERSION}
 LABEL maintainer="Ashutosh Sahoo"
 LABEL description="Sample spring boot application for k8s environment"

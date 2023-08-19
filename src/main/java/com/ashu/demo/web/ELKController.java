@@ -1,9 +1,11 @@
 package com.ashu.demo.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 
@@ -26,7 +28,7 @@ public class ELKController {
     @GetMapping(value = "/exception")
     public void exception() {
         try {
-            throw new RuntimeException("Exception has occurred....");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Exception has occurred....");
         } catch (RuntimeException e) {
             log.error(e.getMessage(), e);
         }
