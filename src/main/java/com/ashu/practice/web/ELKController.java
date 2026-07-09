@@ -1,4 +1,4 @@
-package com.ashu.demo.web;
+package com.ashu.practice.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 /**
  * Adds sample logs into logstash.
@@ -20,7 +21,7 @@ public class ELKController {
 
     @GetMapping
     public String helloWorld() {
-        String response = "Welcome to spring-boot-elk demo," + new Date();
+        String response = "Welcome to spring-boot-elk demo," + LocalDateTime.now(ZoneId.systemDefault());
         log.info(response);
         return response;
     }

@@ -1,6 +1,6 @@
-package com.ashu.demo;
+package com.ashu.practice;
 
-import com.ashu.demo.web.HelloWorldControllerV6;
+import com.ashu.practice.web.HelloWorldControllerV6;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

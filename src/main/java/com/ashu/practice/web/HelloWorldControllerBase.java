@@ -1,4 +1,4 @@
-package com.ashu.demo.web;
+package com.ashu.practice.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
