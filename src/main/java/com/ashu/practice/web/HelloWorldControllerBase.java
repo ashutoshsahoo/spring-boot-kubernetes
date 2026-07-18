@@ -23,7 +23,7 @@ public class HelloWorldControllerBase {
         try {
             ip = InetAddress.getLocalHost();
             ipAddress = ip.getHostAddress();
-            log.info("Current IP address : " + ipAddress);
+            log.info("Current IP address : {}", ipAddress);
         } catch (UnknownHostException e) {
             log.error(e.getMessage());
         }

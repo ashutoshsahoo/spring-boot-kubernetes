@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/v6/hello")
+@RequestMapping(path = "/api/{version}", version = "v6")
 public class HelloWorldControllerV6 extends HelloWorldControllerBase {
 
-    @GetMapping
+    @GetMapping(path = "/hello")
     public String hello() {
         return getResponse("v6");
     }

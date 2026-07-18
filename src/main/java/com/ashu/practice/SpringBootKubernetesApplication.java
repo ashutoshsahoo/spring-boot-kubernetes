@@ -9,7 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 @SpringBootApplication
 public class SpringBootKubernetesApplication {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(SpringBootKubernetesApplication.class, args);
     }
 
