@@ -62,7 +62,7 @@ kubectl apply -f deploy/istio
 * Check application status
 
 ```sh
-kubelet get all
+kubectl get all
 ```
 
 * Verify application status

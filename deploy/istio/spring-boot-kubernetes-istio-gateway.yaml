@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
   name: spring-boot-kubernetes
@@ -7,6 +7,21 @@ spec:
   trafficPolicy:
     loadBalancer:
       simple: RANDOM
+
+    connectionPool:
+      tcp:
+        maxConnections: 200
+      http:
+        http1MaxPendingRequests: 100
+        maxRequestsPerConnection: 100
+        idleTimeout: 30s
+
+    outlierDetection:
+      consecutive5xxErrors: 5
+      interval: 10s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+
   subsets:
     - name: v5
       labels:
@@ -15,13 +30,13 @@ spec:
       labels:
         version: 6.0.0
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: spring-boot-kubernetes-gateway
 spec:
   selector:
-    istio: ingressgateway # use istio default controller
+    istio: ingressgateway # use Istio default controller
   servers:
     - port:
         number: 80
@@ -30,7 +45,7 @@ spec:
       hosts:
         - "*"
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: spring-boot-kubernetes
@@ -47,6 +62,13 @@ spec:
         - destination:
             host: spring-boot-kubernetes
             subset: v5
+
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream,5xx
+
+      timeout: 10s
     - match:
         - uri:
             prefix: /api/v6
@@ -54,5 +76,12 @@ spec:
         - destination:
             host: spring-boot-kubernetes
             subset: v6
+
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream,5xx
+
+      timeout: 10s
 ---
 

@@ -39,21 +39,26 @@ spec:
         version: 5.0.0
     spec:
       serviceAccountName: spring-boot-kubernetes
+      automountServiceAccountToken: false
       containers:
         - name: spring-boot-kubernetes
-          image: ashutoshsahoo/spring-boot-kubernetes:5.0.0
+          image: ashutoshsahoo/spring-boot-kubernetes:8.0.0
           resources:
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+              ephemeral-storage: "2Gi"
             limits:
               memory: "1Gi"
               cpu: "1"
-            requests:
-              memory: "100Mi"
-              cpu: "100m"
           ports:
             - name: http
               containerPort: 8080
           securityContext:
             runAsUser: 1000
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -75,20 +80,25 @@ spec:
         version: 6.0.0
     spec:
       serviceAccountName: spring-boot-kubernetes
+      automountServiceAccountToken: false
       containers:
         - name: spring-boot-kubernetes
-          image: ashutoshsahoo/spring-boot-kubernetes:6.0.0
+          image: ashutoshsahoo/spring-boot-kubernetes:8.0.0
           resources:
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+              ephemeral-storage: "2Gi"
             limits:
               memory: "1Gi"
               cpu: "1"
-            requests:
-              memory: "100Mi"
-              cpu: "100m"
           ports:
             - name: http
               containerPort: 8080
           securityContext:
             runAsUser: 1000
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
 ---
 
